@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 from pathlib import Path
 from .models import Metrics, ModelTraining
 
@@ -26,7 +27,12 @@ class ModelTrainingFactory:
             raise ValueError(f"Имя папки {folder_name} не соотв шаблону") 
         
         model_name, stage_str = parts
-        stage = int(stage_str)
+                
+        match = re.match(r'(\d+)', stage_str)
+        if match:
+            epoch_stage = int(match.group(1))
+        else:
+            raise ValueError(f"Не удалось извлечь количество эпох")
 
         csv_path = path / 'results.csv'    
         if not csv_path.exists():
@@ -41,7 +47,7 @@ class ModelTrainingFactory:
 
         return ModelTraining(
             model_name=model_name,
-            stage=stage,
+            epoch_stage=epoch_stage,
             path=path,
             final_metrics=final_metrics,
             all_metrics=last_row

@@ -19,9 +19,10 @@ class ModelEpoch(BaseModel):
     
 class ModelTraining(BaseModel):
     model_name: str
-    stage: int
+    epoch_stage: int
     path: Path
     final_metrics: Metrics
     all_metrics: Dict[str, Any]
+    dataset_source: str = "unknown"
     
     

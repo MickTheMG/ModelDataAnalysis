@@ -11,13 +11,17 @@ class Collector:
     def collect(self) -> List[ModelTraining]:
         trainings = []
         
-        for model_dir in self.root_path.iterdir():
-            if not model_dir.is_dir():
-                continue
-            for stage_dir in model_dir.glob('*_e*'):
-                if stage_dir.is_dir():
+        for stage_dir in self.root_path.rglob('*_e*'):
+            if stage_dir.is_dir():
+                try:
                     training = self.factory.from_path(stage_dir)
+                    
+                    training.dataset_source = Path(stage_dir).relative_to(self.root_path).parts[0]
                     trainings.append(training)
+                except (ValueError, FileNotFoundError) as e:
+                    print(f"Пропущена директория {stage_dir}: {e}")
+                    continue
         return trainings
+                    
     
     
