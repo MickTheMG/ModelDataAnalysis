@@ -31,8 +31,8 @@ pip install pandas matplotlib seaborn pydantic pydantic-settings
 ```text
 YOLOv8/
 │
-├── models/                           # Папка с результатами обучения
-│   ├── yolov8n/
+├── inputs/                           # Папка с результатами обучения
+│   ├── model8/
 │   │   ├── yolov8n_e50/
 │   │   │   └── results.csv
 │   │   ├── yolov8n_e100/
@@ -41,18 +41,15 @@ YOLOv8/
 │   │   │   └── results.csv
 │   │   └── yolov8n_e200/
 │   │       └── results.csv
-│   ├── yolov8s/
+│   ├── model26/
 │   │   └── ... (аналогично)
-│   ├── yolov8m/
-│   │   └── ...
-│   ├── yolov8l/
-│   │   └── ...
-│   └── yolov8x/
-│       └── ...
 │
 ├── outputs/                          # Результаты анализа
-│   ├── charts/
-│   └── reports/
+│   ├── output_model_8/
+|   |
+│   ├── output_model_26/
+|   |
+|   └── combined_results/
 │
 ├── src/                              
 │   ├── __init__.py
