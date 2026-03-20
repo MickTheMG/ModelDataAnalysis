@@ -1,3 +1,6 @@
-model,dataset_source,epoch_stage,metrics/mAP50-95(B)
-yolo26l,models_26,200,0.7302
-13032026_yolo8x,models_8,200,0.72337
+dataset_source,model,epoch_stage,metric_value,metric_name
+model_11,yolo11x,300,0.73652,metrics/mAP50-95(B)
+model_11_fusion_2_datasets,yolo11m,300,0.8522,metrics/mAP50-95(B)
+models_12,yolo12m,300,0.7192,metrics/mAP50-95(B)
+models_26,yolo26l,200,0.7302,metrics/mAP50-95(B)
+models_8,yolo8x,200,0.72337,metrics/mAP50-95(B)
