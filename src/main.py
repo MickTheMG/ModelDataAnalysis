@@ -44,8 +44,13 @@ def _remove_legacy_outputs(config: Config) -> None:
             for stale_file in dataset_dir.glob(pattern):
                 stale_file.unlink()
 
-    for stale_file in config.combined_output_dir.glob("metrics_*_best_models_combined_progress.png"):
-        stale_file.unlink()
+    combined_patterns = (
+        "metrics_*_best_models_combined_progress.png",
+        "metrics_*_all_models_grouped_horizontal_bar.png",
+    )
+    for pattern in combined_patterns:
+        for stale_file in config.combined_output_dir.glob(pattern):
+            stale_file.unlink()
 
 def main():
     config = Config()
@@ -126,6 +131,11 @@ def main():
     viz_combined = Visualizer(combined_dir)
     best_progress_df = analyzer.get_best_models_progress(best_per_group, metric_of_interest)
     viz_combined.plot_combined_best_progress(best_progress_df, metric_of_interest, combined_dir)
+    viz_combined.plot_all_models_grouped_horizontal_bar(
+        analyzer.df,
+        metric_of_interest,
+        file_name=f"{safe_metric}_all_models_grouped_horizontal_bar.png",
+    )
 
     best_per_group = best_per_group.rename(columns={metric_of_interest: 'metric_value'})
     best_per_group['metric_name'] = metric_of_interest

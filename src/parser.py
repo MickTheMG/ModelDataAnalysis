@@ -43,7 +43,6 @@ class ModelTrainingFactory:
         last_row = df.iloc[-1].to_dict()
         final_metrics = self.metrics_factory.from_dict(last_row)
 
-        # Извлекаем источник данных из пути (например, 'model8' или 'model26')
         dataset_source = path.parent.name
 
         return ModelTraining(

@@ -184,7 +184,7 @@ class Collector:
     def _extract_model_name(raw_name: str) -> str:
         prefix_before_epoch = re.split(r"_e\d+.*", raw_name, maxsplit=1)[0]
         if prefix_before_epoch:
-            cleaned = re.sub(r"_b\d+$", "", prefix_before_epoch)
+            cleaned = re.sub(r"_b\d+.*$", "", prefix_before_epoch)
             if cleaned:
                 return cleaned
 
